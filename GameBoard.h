@@ -1,7 +1,5 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
-#include <iostream>
-#include <SDL.h>
 #include <SDL_image.h>
 #include "SDL_mixer_function.h"
 #include "Tile.h"

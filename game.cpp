@@ -1,32 +1,31 @@
-#include <iostream>
+
 #include <sstream>
 #include "SDL_utils.h"
 #include <vector>
 #include "SDL_image_functions.h"
 #include "SDL_mixer_function.h"
 #include "SDL_ttf_function.h"
-#include "GameBoard.h"
 #include "game.h"
 
 using namespace std;
 
-const char* background_img = "image/background.png";
-const char* bgSelectLevel = "image/selectLevel.png";
-const char* gameboard_img = "image/gameboard.png";
+const char* BACKGROUND_IMG= "image/background.png";
+const char* BGSELECTLEVEL = "image/selectLevel.png";
+const char* GAMEBOARD_IMG = "image/gameboard.png";
 
-const char* playbutton = "image/playbutton.png";
-const char* playbuttondown = "image/playbuttondown.png";
-const char* easybutton = "image/easy.png";
-const char* easybuttondown = "image/easyDown.png";
-const char* mediumbutton = "image/medium.png";
-const char* mediumbuttondown = "image/mediumDown.png";
-const char* hardbutton = "image/hard.png";
-const char* hardbuttondown = "image/hardDown.png";
-const char* superhardbutton = "image/superhard.png";
-const char* superhardbuttondown = "image/superhardDown.png";
+const char* PLAYBUTTON = "image/playbutton.png";
+const char* PLAYBUTTONDOWN = "image/playbuttondown.png";
+const char* EASYBUTTON = "image/easy.png";
+const char* EASYBUTTONDOWN= "image/easyDown.png";
+const char* MEDIUMBUTTON = "image/medium.png";
+const char* MEDIUMBUTTONDOWN = "image/mediumDown.png";
+const char* HARDBUTTON = "image/hard.png";
+const char* HARDBUTTONDOWN = "image/hardDown.png";
+const char* SUPERHARDBUTTON = "image/superhard.png";
+const char* SUPERHARDBUTTONDOWN = "image/superhardDown.png";
 
-const char* soundOnbutton = "image/soundOn.png";
-const char* soundOffbutton = "image/soundOff.png";
+const char* SOUNDONBUTTON = "image/soundOn.png";
+const char* SOUNDOFFBUTTON = "image/soundOff.png";
 
 SDL_Rect back_rect = { 0, 0, 900, 600 };
 SDL_Rect urScore = { 120, 117, 120, 30 };
@@ -87,7 +86,7 @@ int Game::result(bool res)
     game_button[1].create_text("image/menu.png", "image/menuDown.png");
     game_button[2].create_text("image/quit.png", "image/quitDown.png");
     
-    Show_image(renderer, bgSelectLevel, back_rect);
+    Show_image(renderer, BGSELECTLEVEL, back_rect);
     for (int i = 0; i < 3; i++) {
         game_button[i].render();
     }
@@ -124,6 +123,7 @@ int Game::result(bool res)
                         if (i == 2) return -1;
                         else return i;
                     }
+                    SDL_Quit();
                 }
             }
         }
@@ -135,8 +135,8 @@ void Game::initialize_Game() {
     Mix_VolumeChunk(selected_sound, 64);
     Mix_VolumeChunk(reverse_sound, 32);
     Mix_VolumeMusic(16);
-    Show_image(renderer, background_img, back_rect);
-    Show_image(renderer, playbutton, play_rect);
+    Show_image(renderer, BACKGROUND_IMG, back_rect);
+    Show_image(renderer, PLAYBUTTON, play_rect);
     Mix_PlayMusic(background_music, -1);
 
     game_button[4].Button_rect = { 840, 540, 55, 55 };
@@ -145,11 +145,11 @@ void Game::initialize_Game() {
         game_button[i].Button_rect = { 600, 190 + i * 80, 150, 50 };
         game_button[i].renderer = renderer;
     }
-    game_button[0].create_text(easybutton, easybuttondown);
-    game_button[1].create_text(mediumbutton, mediumbuttondown);
-    game_button[2].create_text(hardbutton, hardbuttondown);
-    game_button[3].create_text(superhardbutton, superhardbuttondown);
-    game_button[4].create_text(soundOnbutton, soundOffbutton);
+    game_button[0].create_text(EASYBUTTON, EASYBUTTONDOWN);
+    game_button[1].create_text(MEDIUMBUTTON, MEDIUMBUTTONDOWN);
+    game_button[2].create_text(HARDBUTTON, HARDBUTTONDOWN);
+    game_button[3].create_text(SUPERHARDBUTTON, SUPERHARDBUTTONDOWN);
+    game_button[4].create_text(SOUNDONBUTTON, SOUNDOFFBUTTON);
     bool quit = false;
     while (!quit) {
         if (SDL_PollEvent(&e) == 0) continue;
@@ -157,7 +157,7 @@ void Game::initialize_Game() {
             bool playBut = (e.button.x <= 850) && (e.button.x >= 700) && (e.button.y <= 580) && (e.button.y >= 500);
             if (playBut) {
                 if(!Mix_Paused(-1)) Mix_PlayChannel(-1, reverse_sound, 0);
-                Show_image(renderer, playbuttondown, play_rect);
+                Show_image(renderer, PLAYBUTTONDOWN, play_rect);
                 SDL_Delay(50);
                 quit = true;
             }
@@ -167,7 +167,7 @@ void Game::initialize_Game() {
 }
 void Game::selectLevel() {
     bool quit = false;
-    Show_image(renderer, bgSelectLevel, back_rect);
+    Show_image(renderer, BGSELECTLEVEL, back_rect);
     for (int i = 0; i < 5; i++) {
         game_button[i].render();
     }
@@ -230,7 +230,7 @@ int Game::Gameplay() {
     Board game_board(renderer);
     long point = 0;
     int moveHid = move;
-    Show_image(renderer, gameboard_img, back_rect);
+    Show_image(renderer, GAMEBOARD_IMG, back_rect);
     LoadFont("000000", renderer, urScore);
     LoadFont(IntTostr(target_point), renderer, TarScore);
     LoadFont("Moves:", renderer, MoveRect);

@@ -1,6 +1,3 @@
-#include <iostream>
-#include <SDL.h>
-#include <SDL_mixer.h>
 #include "SDL_mixer_function.h"
 
 using namespace std;

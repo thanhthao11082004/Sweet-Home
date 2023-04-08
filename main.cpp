@@ -8,7 +8,7 @@ using namespace std;
 
 const int SCREEN_WIDTH = 900;
 const int SCREEN_HEIGHT = 600;
-const char* WINDOW_TITLE = "Defense Kasukabe!";
+const char* WINDOW_TITLE = "Candy Crush";
 
 int main(int argc, char* argv[])
 {

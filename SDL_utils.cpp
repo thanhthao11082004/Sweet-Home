@@ -1,8 +1,4 @@
-#include <iostream>
-#include <SDL.h>
-
-//*****************************************************
-// Các hàm chung v? kh?i t?o và hu? SDL
+#include "SDL_utils.h"
 void logSDLError(std::ostream& os,
     const std::string& msg, bool fatal)
 {
@@ -25,10 +21,10 @@ void initSDL(SDL_Window*& window, SDL_Renderer*& renderer,
       //SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_FULLSCREEN_DESKTOP);
     if (window == nullptr) logSDLError(std::cout, "CreateWindow", true);
 
-    //Khi thông th??ng ch?y v?i môi tr??ng bình th??ng ? nhà
+    //Khi thï¿½ng th??ng ch?y v?i mï¿½i tr??ng bï¿½nh th??ng ? nhï¿½
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
         SDL_RENDERER_PRESENTVSYNC);
-    //Khi ch?y ? máy th?c hành WinXP ? tr??ng (máy ?o)
+    //Khi ch?y ? mï¿½y th?c hï¿½nh WinXP ? tr??ng (mï¿½y ?o)
     //renderer = SDL_CreateSoftwareRenderer(SDL_GetWindowSurface(window));
     if (renderer == nullptr) logSDLError(std::cout, "CreateRenderer", true);
 

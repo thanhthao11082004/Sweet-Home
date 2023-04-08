@@ -1,7 +1,4 @@
-#include <iostream>
-#include <SDL.h>
-#include <SDL_ttf.h>
-
+#include "SDL_ttf_function.h"
 using namespace std;
 
 TTF_Font* Font = NULL;

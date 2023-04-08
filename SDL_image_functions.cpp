@@ -1,8 +1,4 @@
-#include <iostream>
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_audio.h>
-
+#include "SDL_image_functions.h"
 using namespace std;
 
 SDL_Surface* image = NULL;

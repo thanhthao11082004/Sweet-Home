@@ -1,6 +1,4 @@
-#include <SDL.h>
-#include <SDL_mixer.h>
-#include "SDL_mixer_function.h"
+
 #include "SDL_utils.h"
 #include "GameBoard.h"
 
