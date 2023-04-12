@@ -13,8 +13,9 @@ const char* BACKGROUND_IMG= "image/background.png";
 const char* BGSELECTLEVEL = "image/selectLevel.png";
 const char* GAMEBOARD_IMG = "image/gameboard.png";
 
-const char* PLAYBUTTON = "image/playbutton.png";
-const char* PLAYBUTTONDOWN = "image/playbuttondown.png";
+//const char* PLAYBUTTON = "image/playbutton.png";
+//const char* PLAYBUTTONDOWN = "image/playbuttondown.png";
+const char* MENU_BACKGROUND = "image/menuu";
 const char* EASYBUTTON = "image/easy.png";
 const char* EASYBUTTONDOWN= "image/easyDown.png";
 const char* MEDIUMBUTTON = "image/medium.png";
@@ -91,11 +92,13 @@ int Game::result(bool res)
         game_button[i].render();
     }
     game_button[4].render();
-    if (res) LoadFont("You Win!!!", renderer, Title_rect);
-    else LoadFont("You Lose!!!", renderer, Title_rect);
+    if (res) LoadFont("  YOU WIN  ", renderer, Title_rect);
+    else LoadFont("  YOU LOSE  ", renderer, Title_rect);
     SDL_RenderPresent(renderer);
     while (true) {
-        if (SDL_PollEvent(&e) == 0) continue;
+        if (SDL_PollEvent(&e) == 0) {
+            continue;  // done
+        }
         if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
             if (!Mix_Paused(-1)) Mix_PlayChannel(-1, reverse_sound, 0);
             for (int i = 0; i < 5; i++) {
@@ -152,7 +155,9 @@ void Game::initialize_Game() {
     game_button[4].create_text(SOUNDONBUTTON, SOUNDOFFBUTTON);
     bool quit = false;
     while (!quit) {
-        if (SDL_PollEvent(&e) == 0) continue;
+        if (SDL_PollEvent(&e) == 0) {
+           continue;  // done
+        }
         if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
             bool playBut = (e.button.x <= 850) && (e.button.x >= 700) && (e.button.y <= 580) && (e.button.y >= 500);
             if (playBut) {
@@ -174,7 +179,7 @@ void Game::selectLevel() {
     LoadFont("Select Level", renderer, Title_rect);
     SDL_RenderPresent(renderer);
     while (!quit) {
-        if (SDL_PollEvent(&e) == 0) continue;
+        if (SDL_PollEvent(&e) == 0)  continue; // done
         if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
             if (!Mix_Paused(-1))Mix_PlayChannel(-1, reverse_sound, 0);
             for (int i = 0; i < 5; i++) {
@@ -240,7 +245,7 @@ int Game::Gameplay() {
     game_board.Fill_board();
     bool quit = false;
     while (!quit) {
-        if (SDL_PollEvent(&e) == 0) continue;
+        if (SDL_PollEvent(&e) == 0) continue; // doneevent
         if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
             if (!game_board.Check_Possible_Move()) {
                 SDL_SetRenderDrawColor(renderer, 140, 70, 0, 0);

@@ -31,9 +31,24 @@ void initSDL(SDL_Window*& window, SDL_Renderer*& renderer,
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
     SDL_RenderSetLogicalSize(renderer, screenWidth, screenHeight);
 }
+/*
+void init_SDL(SDL_Window*& window, SDL_Renderer*& renderer, int screenWidth, int screenHeight, const char* windowTitle) {
+	//Khởi tạo cửa sổ
+	window = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
+	if (window == NULL) {
+		std::cout << "Window has failed to init: " << SDL_GetError << std::endl;
+	}
+	//Tạo renderer
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (renderer == NULL) {
+		std::cout << "Renderer has failed to init: " << SDL_GetError() << std::endl;
+	}
+}
+*/
 
 void quitSDL(SDL_Window* window, SDL_Renderer* renderer)
 {
+
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
