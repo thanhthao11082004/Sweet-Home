@@ -1,3 +1,6 @@
+Trần Thanh Thảo - 22021157 
+
+Hướng dẫn cách chơi game :
 
 Mỗi màn đã cho trước số điểm cần đạt và số lượt di chuyển, nếu đạt được số điểm cho trước trong số lượt quy định thì thắng ngược lại thì thua.
 
