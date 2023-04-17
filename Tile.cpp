@@ -38,7 +38,7 @@ void Tile::render() {
     }
     else
     {
-        texture = SDL_CreateTextureFromSurface(renderer, image);
+        texture = SDL_CreateTextureFromSurface(renderer, image); //
     }
     SDL_RenderCopy(renderer, texture, NULL, &Tile_rect);
     SDL_RenderPresent(renderer);
@@ -46,7 +46,7 @@ void Tile::render() {
 void Tile::render_selected() {
     SDL_Surface* image = NULL;
     image = IMG_Load("image/select.png");
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image); //
     SDL_RenderCopy(renderer, texture, NULL, &Tile_rect);
     SDL_RenderPresent(renderer);
 }
@@ -66,7 +66,7 @@ void Tile::render_empty() {
     }
     else
     {
-        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
+        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image); //
         SDL_RenderCopy(renderer, texture, NULL, &Tile_rect);
     }
 }

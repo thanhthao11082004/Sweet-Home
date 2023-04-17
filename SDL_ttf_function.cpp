@@ -16,7 +16,7 @@ void LoadFont(const char* Text, SDL_Renderer* renderer, SDL_Rect Text_rect)
 		Font = TTF_OpenFont("font/Southern.ttf", 64);
 		SDL_Color textColor = { 255, 255, 255, 255 };
 		textSurface = TTF_RenderText_Solid(Font, Text, textColor);
-		StrTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+		StrTexture = SDL_CreateTextureFromSurface(renderer, textSurface);  //
 		SDL_RenderCopy(renderer, StrTexture, NULL, &Text_rect);
 		SDL_RenderPresent(renderer);
 		SDL_FreeSurface(textSurface);

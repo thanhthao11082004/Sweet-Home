@@ -13,9 +13,13 @@ const char* BACKGROUND_IMG= "image/background.png";
 const char* BGSELECTLEVEL = "image/selectLevel.png";
 const char* GAMEBOARD_IMG = "image/gameboard.png";
 
-//const char* PLAYBUTTON = "image/playbutton.png";
-//const char* PLAYBUTTONDOWN = "image/playbuttondown.png";
-const char* MENU_BACKGROUND = "image/menuu";
+const char* PLAY= "image/play.png";
+const char* OPTION = "image/option.png";
+const char* SETTING = "image/setting.png";
+const char* QUIT = "image/quity.png";
+//const char* GUIDE = "image/1.png";
+//const char* GAME = "image/2.png";
+
 const char* EASYBUTTON = "image/easy.png";
 const char* EASYBUTTONDOWN= "image/easyDown.png";
 const char* MEDIUMBUTTON = "image/medium.png";
@@ -28,12 +32,20 @@ const char* SUPERHARDBUTTONDOWN = "image/superhardDown.png";
 const char* SOUNDONBUTTON = "image/soundOn.png";
 const char* SOUNDOFFBUTTON = "image/soundOff.png";
 
+const char* LOSE = "image/lose.png";
+const char* WIN = "image/win.png";
+
 SDL_Rect back_rect = { 0, 0, 900, 600 };
 SDL_Rect urScore = { 120, 117, 120, 30 };
 SDL_Rect TarScore = { 120, 290, 120, 30 };
 SDL_Rect MoveRect = { 190, 362, 70, 30 };
 SDL_Rect MoveNum = { 265, 366, 30, 25};
-SDL_Rect play_rect = { 700, 500, 150, 80 };
+
+SDL_Rect play_rect = { 55 , 225, 300, 90 };
+SDL_Rect option_rect = {55 , 315 , 300 , 90};
+SDL_Rect setting_rect = {55 , 390, 300 , 90};
+SDL_Rect quity_rect = {55 , 480, 300 , 90};
+
 SDL_Rect Result_rect = { 900 / 2 + 50, 600 / 2 - 20, 200, 60 };
 SDL_Rect Title_rect = { 570, 100, 200, 50 };
 
@@ -69,9 +81,15 @@ char* moveStr(int moves)
 }
 
 void Button::create_text(const char* up, const char* down) {
-    SDL_Surface* image = NULL;
+   /*SDL_Surface* image = NULL;
     image = IMG_Load(up);
-    Up_text = SDL_CreateTextureFromSurface(renderer, image);
+    Up_text = SDL_CreateTextureFromSurface(renderer, image);//
+    image = IMG_Load(down);
+    Down_text = SDL_CreateTextureFromSurface(renderer, image);//
+    */
+   SDL_Surface* image = NULL;
+    image = IMG_Load(up);
+    Up_text = SDL_CreateTextureFromSurface(renderer, image);//
     image = IMG_Load(down);
     Down_text = SDL_CreateTextureFromSurface(renderer, image);
 }
@@ -80,20 +98,21 @@ void Button::render() {
     if (status == Button_Status::Up) SDL_RenderCopy(renderer, Up_text, NULL, &Button_rect);
     else SDL_RenderCopy(renderer, Down_text, NULL, &Button_rect);
 }
-
+// this is bug
 int Game::result(bool res) 
 {
     game_button[0].create_text("image/playAgain.png", "image/playAgainDown.png");
     game_button[1].create_text("image/menu.png", "image/menuDown.png");
     game_button[2].create_text("image/quit.png", "image/quitDown.png");
-    
-    Show_image(renderer, BGSELECTLEVEL, back_rect);
+    if (res)
+    Show_image(renderer, WIN, back_rect);// hien anh khi ket thuc game
+    else Show_image(renderer , LOSE, back_rect);
     for (int i = 0; i < 3; i++) {
         game_button[i].render();
     }
-    game_button[4].render();
-    if (res) LoadFont("  YOU WIN  ", renderer, Title_rect);
-    else LoadFont("  YOU LOSE  ", renderer, Title_rect);
+    game_button[4].render(); // am thanh
+   // if (res) LoadFont("  YOU WIN  ", renderer, Title_rect);
+   // else LoadFont("  YOU LOSE  ", renderer, Title_rect);
     SDL_RenderPresent(renderer);
     while (true) {
         if (SDL_PollEvent(&e) == 0) {
@@ -139,7 +158,10 @@ void Game::initialize_Game() {
     Mix_VolumeChunk(reverse_sound, 32);
     Mix_VolumeMusic(16);
     Show_image(renderer, BACKGROUND_IMG, back_rect);
-    Show_image(renderer, PLAYBUTTON, play_rect);
+    Show_image(renderer, PLAY, play_rect);
+    Show_image(renderer ,OPTION, option_rect );
+    Show_image (renderer , SETTING, setting_rect);
+    Show_image (renderer , QUIT, quity_rect);
     Mix_PlayMusic(background_music, -1);
 
     game_button[4].Button_rect = { 840, 540, 55, 55 };
@@ -159,12 +181,39 @@ void Game::initialize_Game() {
            continue;  // done
         }
         if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
-            bool playBut = (e.button.x <= 850) && (e.button.x >= 700) && (e.button.y <= 580) && (e.button.y >= 500);
-            if (playBut) {
+          // SDL_Rect play_rect = { 55 , 225, 300, 90 };
+            // code chuc nang cho phim play
+            if ((e.button.x <= 355) && (e.button.x >= 55) && (e.button.y <= 315) && (e.button.y >= 225))
+        {
                 if(!Mix_Paused(-1)) Mix_PlayChannel(-1, reverse_sound, 0);
-                Show_image(renderer, PLAYBUTTONDOWN, play_rect);
-                SDL_Delay(50);
+              // Show_image(renderer, PLAYDOWN, play_rect);
+               SDL_Delay(50);
                 quit = true;
+            }
+            // code chuc nang cho phim option 
+           else if ((e.button.x <= 355) && (e.button.x >= 55) && (e.button.y <= 405) && (e.button.y >= 315))
+        {
+                if(!Mix_Paused(-1)) Mix_PlayChannel(-1, reverse_sound, 0);
+              // Show_image(renderer, PLAYDOWN, play_rect);
+               SDL_Delay(50);
+                quit = true;
+            }
+
+            // code chuc nang cho phim setting
+          else  if ((e.button.x <= 355) && (e.button.x >= 55) && (e.button.y <= 480) && (e.button.y >= 390))
+        {
+                if(!Mix_Paused(-1)) Mix_PlayChannel(-1, reverse_sound, 0);
+              // Show_image(renderer, PLAYDOWN, play_rect);
+               SDL_Delay(50);
+                quit = true;
+            }
+
+            // code chuc nang cho phim quit
+           else if ((e.button.x <= 355) && (e.button.x >= 55) && (e.button.y <= 570) && (e.button.y >= 480))
+        {
+                if(!Mix_Paused(-1)) Mix_PlayChannel(-1, reverse_sound, 0);
+              SDL_Delay(50);
+               SDL_Quit();
             }
         }
 
@@ -224,7 +273,8 @@ void Game::selectLevel() {
                         }
                     }
                     else game_button[i].status = Button_Status::Up;
-                    SDL_Delay(50);
+                  //  SDL_Delay(50);
+                   SDL_Delay(250);
                     break;
                 }
             }
