@@ -19,19 +19,14 @@ int main(int argc, char* argv[])
     //render gameplay
     SDL_Event e;
     bool quit = false;
-    while ( !quit){
-        while (SDL_PollEvent(&e) != 0 ){
+    while (!quit){
+    while (SDL_PollEvent(&e) != 0 ){
         if (e.type == SDL_QUIT) {
-            quit = true;
-            break;
+            SDL_Quit();
         }
         else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
-    
-       quit = true;
-       break;
+            quit = true;
         }
-      
-       else{
         Game GameH(renderer, e);
         GameH.initialize_Game();
         GameH.selectLevel();
@@ -41,9 +36,8 @@ int main(int argc, char* argv[])
             else if (temp == 1) break;
             else continue;
         }
-        }  
-        } 
-    }
+    } 
+}
     CloseMusic();
     quitSDL(window, renderer);
     return 0;
