@@ -6,8 +6,8 @@
 
 using namespace std;
 
-const int Board_row = 8;
-const int Board_col = 8;
+const int Board_row = 6;
+const int Board_col = 6;
 const int NumOfTile = 5;
 
 class Board {

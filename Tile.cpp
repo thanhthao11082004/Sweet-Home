@@ -56,10 +56,10 @@ void Tile::render_empty() {
     SDL_Surface* image = NULL;
     switch (colour) {
     case Tile_empty::LightEmpty:
-        image = IMG_Load("image/today.png");
+        image = IMG_Load("image/hu.png");
         break;
     case Tile_empty::DarkEmpty:
-        image = IMG_Load("image/today.png");
+        image = IMG_Load("image/hu.png");
         break;
     }
     if (image == NULL)

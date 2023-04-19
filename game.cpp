@@ -11,7 +11,7 @@ using namespace std;
 
 const char* BACKGROUND_IMG= "image/background.png";
 const char* BGSELECTLEVEL = "image/9.webp";
-const char* GAMEBOARD_IMG = "image/9.webp";
+const char* GAMEBOARD_IMG = "image/19.jpg";
 
 const char* PLAY= "image/play.png";
 const char* OPTION = "image/option.png";

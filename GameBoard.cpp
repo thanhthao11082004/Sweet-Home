@@ -272,8 +272,8 @@ void Board::Fill_board() {
                 Tile_Board[j][i].colour = Tile_empty::LightEmpty;
             else Tile_Board[j][i].colour = Tile_empty::DarkEmpty;
             Tile_Board[j][i].mark = rand() % NumOfTile + 1;
-            Tile_Board[j][i].Tile_rect.x = 323 + i * 70;
-            Tile_Board[j][i].Tile_rect.y = 20 + j * 70;
+            Tile_Board[j][i].Tile_rect.x = 345 + i * 70;
+            Tile_Board[j][i].Tile_rect.y = 90 + j * 70;
             if (i >= 2 && Tile_Board[j][i - 2].mark == Tile_Board[j][i - 1].mark) {
                 if (Tile_Board[j][i].mark == Tile_Board[j][i - 1].mark) {
                     j--;

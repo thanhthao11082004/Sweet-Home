@@ -27,9 +27,16 @@ int main(int argc, char* argv[])
         else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
             quit = true;
         }
+        SDL_RenderClear( renderer );
+
+                //Render texture to screen
+
+                //Update screen
+                SDL_RenderPresent( renderer );
         Game GameH(renderer, e);
         GameH.initialize_Game();
         GameH.selectLevel();
+        
         while (!quit) {
             int temp = GameH.Gameplay();
             if (temp == -1) quit = true;
