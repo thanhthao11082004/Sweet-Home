@@ -4,7 +4,6 @@
 #include "SDL_mixer_function.h"
 
 using namespace std;
-
 void Tile::render() {
     render_empty();
     SDL_Surface* image = NULL;
@@ -21,6 +20,7 @@ void Tile::render() {
         status = Tile_Status::Candy3;
         image = IMG_Load("image/candy3.png");
         break;
+
     case 4:
         status = Tile_Status::Candy4;
         image = IMG_Load("image/candy4.png");
@@ -39,6 +39,8 @@ void Tile::render() {
     else
     {
         texture = SDL_CreateTextureFromSurface(renderer, image); //
+         SDL_SetTextureAlphaMod(texture, 255);
+         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     }
     SDL_RenderCopy(renderer, texture, NULL, &Tile_rect);
     SDL_RenderPresent(renderer);
@@ -54,10 +56,10 @@ void Tile::render_empty() {
     SDL_Surface* image = NULL;
     switch (colour) {
     case Tile_empty::LightEmpty:
-        image = IMG_Load("image/lighttile.png");
+        image = IMG_Load("image/today.png");
         break;
     case Tile_empty::DarkEmpty:
-        image = IMG_Load("image/darktile.png");
+        image = IMG_Load("image/today.png");
         break;
     }
     if (image == NULL)
