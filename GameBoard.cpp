@@ -62,6 +62,7 @@ void Board::Find_Tile_Selected(int xmouse, int ymouse, int &move)
         }
     }
 }
+
 bool Board::Find_Match(long &count_point){
     speed = 25;
     for (int i = 0; i < Board_row; i++)
@@ -105,6 +106,8 @@ bool Board::Find_Match(long &count_point){
             j = k;
         }
     }
+
+    
     for (int i = 0; i < Board_col; i++)
     {
         int k = 1;
@@ -155,6 +158,9 @@ bool Board::Find_Match(long &count_point){
     }
     return false;
 }
+
+
+
 bool Board::Check_Possible_Move(){
     Board virtual_board;
     for (int i = 0; i < Board_row; i++)
@@ -189,6 +195,9 @@ bool Board::Check_Possible_Move(){
     }
     return false;
 }
+
+
+
 void Board::Drop_Tiles(long &point){
     for (int i = 0; i < Board_col; i++)
     {
@@ -237,6 +246,9 @@ void Board::Drop_Tiles(long &point){
         }
     }
 }
+
+
+
 void Board::Mix_Tiles(){
     int virtual_board[Board_row][Board_col];
     bool check_fill[Board_row][Board_col] = { 0 };
@@ -265,6 +277,9 @@ void Board::Mix_Tiles(){
     }
     if (!Check_Possible_Move()) Mix_Tiles();
 }
+
+
+
 void Board::Fill_board() {
     for (int i = 0; i < Board_col; i++) {
         for (int j = 0; j < Board_row; j++) {

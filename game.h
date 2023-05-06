@@ -31,13 +31,16 @@ class Game {
 	long point = 0, target_point = 0;
 	int move = 0;	
 	Button game_button[5];
+	Button game_option[0];
 public:
 	Game(SDL_Renderer* _renderer, SDL_Event _e) {
 		renderer = _renderer;
 		e = _e;
 	}
-	void initialize_Game();
+	int initialize_Game();
 	void selectLevel();
+	int Option();
+	int Setting();
 	int Gameplay();
 	int result(bool res);
 };

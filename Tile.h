@@ -11,6 +11,7 @@ enum class Tile_Status {
     Candy3,
     Candy4,
     Candy5,
+    Candy6,
     Selected,
 };
 

@@ -29,6 +29,9 @@ void Tile::render() {
         status = Tile_Status::Candy5;
         image = IMG_Load("image/candy5.png");
         break;
+        case 6:
+        status = Tile_Status::Candy6;
+        image = IMG_Load("image/candy6.png");
     default:
         break;
     }

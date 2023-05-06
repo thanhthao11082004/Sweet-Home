@@ -34,16 +34,28 @@ int main(int argc, char* argv[])
                 //Update screen
                 SDL_RenderPresent( renderer );
         Game GameH(renderer, e);
-        GameH.initialize_Game();
+     int x = GameH.initialize_Game() ;
+        if ( x == 1){
         GameH.selectLevel();
-        
         while (!quit) {
             int temp = GameH.Gameplay();
             if (temp == -1) quit = true;
             else if (temp == 1) break;
             else continue;
         }
-    } 
+    }
+        else if ( x == 2) {
+            GameH.Option();
+            if ( GameH.Option() == 1) break;
+            else continue;
+        }
+        else if ( x == 3){
+            GameH.Setting();
+            if ( GameH.Setting() == 1) break;
+            else continue;
+        }
+    
+    }
 }
     CloseMusic();
     quitSDL(window, renderer);

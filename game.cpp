@@ -11,14 +11,15 @@ using namespace std;
 
 const char* BACKGROUND_IMG= "image/background.png";
 const char* BGSELECTLEVEL = "image/9.webp";
+const char* OPTIONS = "image/1.png";
+const char* SETTINGS = "image/2.png";
 const char* GAMEBOARD_IMG = "image/19.jpg";
 
 const char* PLAY= "image/play.png";
 const char* OPTION = "image/option.png";
 const char* SETTING = "image/setting.png";
 const char* QUIT = "image/quity.png";
-//const char* GUIDE = "image/1.png";
-//const char* GAME = "image/2.png";
+
 
 const char* EASYBUTTON = "image/easy.png";
 const char* EASYBUTTONDOWN= "image/easyDown.png";
@@ -48,6 +49,8 @@ SDL_Rect quity_rect = {55 , 480, 300 , 90};
 
 SDL_Rect Result_rect = { 900 / 2 + 50, 600 / 2 - 20, 200, 60 };
 SDL_Rect Title_rect = { 570, 100, 200, 50 };
+SDL_Color TextColor = {255,255,255,255};
+SDL_Color BackgroundColor = {255,0,255,255};
 
 // Ham chuyen so thanh ky tu 
 // ex : 12345 -> 012345
@@ -164,7 +167,7 @@ int Game::result(bool res)
 
 
 
-void Game::initialize_Game() {
+int Game::initialize_Game() {
     if (!LoadMusic()) cerr << "Failed to load music!" << endl;
     Mix_VolumeChunk(eatable_sound, 32);
     Mix_VolumeChunk(selected_sound, 64);
@@ -205,6 +208,7 @@ void Game::initialize_Game() {
               // Show_image(renderer, PLAYDOWN, play_rect);
                SDL_Delay(50);
                 quit = true;
+                return 1 ;
             }
             // code chuc nang cho phim option 
            else if ((e.button.x <= 355) && (e.button.x >= 55) && (e.button.y <= 405) && (e.button.y >= 315))
@@ -213,6 +217,7 @@ void Game::initialize_Game() {
               // Show_image(renderer, PLAYDOWN, play_rect);
                SDL_Delay(50);
                 quit = true;
+                return 2 ;
             }
 
             // code chuc nang cho phim setting
@@ -222,6 +227,7 @@ void Game::initialize_Game() {
               // Show_image(renderer, PLAYDOWN, play_rect);
                SDL_Delay(50);
                 quit = true;
+                return 3 ;
             }
 
             // code chuc nang cho phim quit
@@ -245,7 +251,7 @@ void Game::selectLevel() {
     for (int i = 0; i < 5; i++) {
         game_button[i].render();
     }
-    LoadFont("Select Level", renderer, Title_rect);
+    LoadFont("Select Level", renderer, Title_rect,"font/Southern.ttf", 24,TextColor, BackgroundColor);
     SDL_RenderPresent(renderer);
     while (!quit) {
         if (SDL_PollEvent(&e) != 0){
@@ -304,20 +310,114 @@ void Game::selectLevel() {
     }
 }
 
+int Game::Option(){
+Show_image(renderer,OPTIONS , back_rect);
+Show_image(renderer, QUIT , quity_rect);
+game_option[0].Button_rect = { 840, 540, 55, 55};
+game_option[0].renderer = renderer;
+Show_image(renderer , SOUNDONBUTTON , game_option[0].Button_rect );
+game_option[0].create_text(SOUNDONBUTTON, SOUNDOFFBUTTON);
+SDL_RenderPresent(renderer);
+
+bool quit = false;
+    while ( !quit){
+        if (SDL_PollEvent(&e) != 0){
+            if ( e.type == SDL_QUIT) SDL_Quit(); 
+            else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
+                if (!Mix_Paused(-1))Mix_PlayChannel(-1, reverse_sound, 0);   
+            if (e.button.x <= game_option[0].Button_rect.x + game_option[0].Button_rect.w
+                && e.button.x >= game_option[0].Button_rect.x
+                && e.button.y <= game_option[0].Button_rect.y + game_option[0].Button_rect.h
+                && e.button.y >= game_option[0].Button_rect.y) {
+                    if (game_option[0].status == Button_Status::Up) game_option[0].status = Button_Status::Down;
+                    else game_option[0].status = Button_Status::Up;
+                        game_option[0].render();
+                        SDL_RenderPresent(renderer);
+                            if ( game_option[0].status == Button_Status::Up){
+                                Mix_ResumeMusic();
+                                Mix_Resume(-1);
+                            }
+                            else {
+                                Mix_PauseMusic();
+                                Mix_Pause(-1);
+                            }
+                        // SDL_Delay(250);
+                        // break;
+            }
+                else if ((e.button.x <= 355) && (e.button.x >= 55) && (e.button.y <= 570) && (e.button.y >= 480))
+        {
+                if(!Mix_Paused(-1)) Mix_PlayChannel(-1, reverse_sound, 0);
+              SDL_Delay(50);
+               return 1 ;
+            }
+                }
+        }
+        }
+
+    }
+
+int Game::Setting(){
+Show_image(renderer,SETTINGS , back_rect);
+Show_image(renderer, QUIT , quity_rect);
+game_option[0].Button_rect = { 840, 540, 55, 55};
+game_option[0].renderer = renderer;
+Show_image(renderer , SOUNDONBUTTON , game_option[0].Button_rect );
+game_option[0].create_text(SOUNDONBUTTON, SOUNDOFFBUTTON);
+SDL_RenderPresent(renderer);
 
 
+bool quit = false;
+    while ( !quit){
+        if (SDL_PollEvent(&e) != 0){
+            if ( e.type == SDL_QUIT) SDL_Quit(); 
+            else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
+                if (!Mix_Paused(-1))Mix_PlayChannel(-1, reverse_sound, 0);   
+            if (e.button.x <= game_option[0].Button_rect.x + game_option[0].Button_rect.w
+                && e.button.x >= game_option[0].Button_rect.x
+                && e.button.y <= game_option[0].Button_rect.y + game_option[0].Button_rect.h
+                && e.button.y >= game_option[0].Button_rect.y) {
+                    if (game_option[0].status == Button_Status::Up) game_option[0].status = Button_Status::Down;
+                    else game_option[0].status = Button_Status::Up;
+                        game_option[0].render();
+                        SDL_RenderPresent(renderer);
+                            if ( game_option[0].status == Button_Status::Up){
+                                Mix_ResumeMusic();
+                                Mix_Resume(-1);
+                            }
+                            else {
+                                Mix_PauseMusic();
+                                Mix_Pause(-1);
+                            }
+                        // SDL_Delay(250);
+                        // break;
+            }
+                else if ((e.button.x <= 355) && (e.button.x >= 55) && (e.button.y <= 570) && (e.button.y >= 480))
+        {
+                if(!Mix_Paused(-1)) Mix_PlayChannel(-1, reverse_sound, 0);
+              SDL_Delay(50);
+               return 1 ;
+            }
+                }
+        }
+        }
+
+    }
+
+// void LoadFont(const char* Text, SDL_Renderer* renderer, SDL_Rect Text_rect, const char* FontPath, int FontSize, SDL_Color TextColor, SDL_Color BackgroundColor)
 
 int Game::Gameplay() {
     Board game_board(renderer);
     long point = 0;
     int moveHid = move;
+    
     Show_image(renderer, GAMEBOARD_IMG, back_rect);
-    LoadFont("000000", renderer, urScore);
-    LoadFont(IntTostr(target_point), renderer, TarScore);
-    LoadFont("Moves:", renderer, MoveRect);
+    // LoadFont("000000", renderer, urScore);
+    LoadFont ("000000" ,renderer,urScore,"font/Southern.ttf", 24,TextColor, BackgroundColor );
+    LoadFont(IntTostr(target_point), renderer, TarScore, "font/Southern.ttf", 50,TextColor, BackgroundColor);
+    LoadFont("Moves:", renderer, MoveRect,"font/Southern.ttf", 50,TextColor, BackgroundColor);
     SDL_SetRenderDrawColor(renderer, 140, 70, 0, 0);
     SDL_RenderFillRect(renderer, &MoveNum);
-    LoadFont(moveStr(moveHid), renderer, MoveNum);
+    LoadFont(moveStr(moveHid), renderer, MoveNum , "font/Southern.ttf", 24,TextColor, BackgroundColor);
     game_board.Fill_board();
     bool quit = false;
     while (!quit) {
@@ -329,10 +429,10 @@ int Game::Gameplay() {
             if (!game_board.Check_Possible_Move()) {
                 SDL_SetRenderDrawColor(renderer, 140, 70, 0, 0);
                 SDL_RenderFillRect(renderer, &urScore);
-                LoadFont("No Possible move!", renderer, urScore);
+                LoadFont("No Possible move!", renderer, urScore,"font/Southern.ttf", 24,TextColor, BackgroundColor);
                 SDL_Delay(300);
                 SDL_RenderFillRect(renderer, &urScore);
-                LoadFont("Mix Tiles!", renderer, urScore);
+                LoadFont("Mix Tiles!", renderer, urScore,"font/Southern.ttf", 24,TextColor, BackgroundColor);
                 game_board.Mix_Tiles();
                 game_board.render_board();
             }
@@ -340,12 +440,12 @@ int Game::Gameplay() {
             game_board.Find_Tile_Selected(e.button.x, e.button.y, moveHid);
             while (game_board.Find_Match(point)) {
                 SDL_RenderFillRect(renderer, &MoveNum);
-                LoadFont(moveStr(moveHid), renderer, MoveNum);
+                LoadFont(moveStr(moveHid), renderer, MoveNum,"font/Southern.ttf", 24,TextColor, BackgroundColor);
 
                 game_board.Drop_Tiles(point);
 
                 SDL_RenderFillRect(renderer, &urScore);
-                LoadFont(IntTostr(point), renderer, urScore);
+                LoadFont(IntTostr(point), renderer, urScore,"font/Southern.ttf", 24,TextColor, BackgroundColor);
             }
 
             if (point >= target_point) {
