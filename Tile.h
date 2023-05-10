@@ -15,12 +15,6 @@ enum class Tile_Status {
     Selected,
 };
 
-
-enum class Tile_empty {
-    DarkEmpty,
-    LightEmpty
-};
-
 class Tile {
     int x = 0, y = 0;
     int w = 70, h = 70;
@@ -30,7 +24,6 @@ public:
     int mark = 0;
     SDL_Rect Tile_rect = { x, y, w, h };
     Tile_Status status = Tile_Status::Empty;
-    Tile_empty colour = Tile_empty::DarkEmpty;
     Tile() {};
     ~Tile() {}; 
     void render();

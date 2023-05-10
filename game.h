@@ -4,6 +4,9 @@
 
 using namespace std;
 
+char* IntTostr(long point);
+char* moveStr(int moves);
+
 enum class Button_Status {
 	Up,
 	Down
@@ -15,7 +18,9 @@ class Button
 	int w = 0, h = 0;
 	SDL_Texture* Up_text = NULL;
 	SDL_Texture* Down_text = NULL;
+
 public:
+
 	SDL_Renderer* renderer = NULL;
 	Button_Status status = Button_Status::Up;
 	SDL_Rect Button_rect = { x, y, w, h };
@@ -24,29 +29,32 @@ public:
 	void create_text(const char* up, const char* down);
 	void render();
 };
+
 class Game {
+	long point = 0, target_point = 0;
+	int move = 0;
 	SDL_Renderer* renderer = NULL;
 	SDL_Event e;
-	Board game_board;	
-	long point = 0, target_point = 0;
-	int move = 0;	
+	Board game_board;		
 	Button game_button[5];
 	Button game_option[0];
+
 public:
-	Game(SDL_Renderer* _renderer, SDL_Event _e) {
+
+	Game(SDL_Renderer* _renderer, SDL_Event _e){
 		renderer = _renderer;
 		e = _e;
 	}
+
 	int initialize_Game();
 	void selectLevel();
 	int Option();
 	int Setting();
 	int Gameplay();
 	int result(bool res);
+	int getOptionValue();
+	int getSettingValue();
 };
-
-char* IntTostr(long point);
-char* moveStr(int moves);
 
 #endif // !NORMAL_H
 

@@ -57,14 +57,15 @@ void Tile::render_selected() {
 }
 void Tile::render_empty() {
     SDL_Surface* image = NULL;
-    switch (colour) {
-    case Tile_empty::LightEmpty:
-        image = IMG_Load("image/hu.png");
-        break;
-    case Tile_empty::DarkEmpty:
-        image = IMG_Load("image/hu.png");
-        break;
-    }
+    // switch (colour) {
+    // case Tile_empty::LightEmpty:
+    //     image = IMG_Load("image/hu.png");
+    //     break;
+    // case Tile_empty::DarkEmpty:
+    //     image = IMG_Load("image/hu.png");
+    //     break;
+    // }
+    image = IMG_Load("image/hu.png");
     if (image == NULL)
     {
         cerr << "Unable to load image! SDL Error: " << SDL_GetError();

@@ -284,8 +284,7 @@ void Board::Fill_board() {
     for (int i = 0; i < Board_col; i++) {
         for (int j = 0; j < Board_row; j++) {
             if ((j % 2 == 0 && i % 2 == 0) || (j % 2 == 1) && (i % 2 == 1))
-                Tile_Board[j][i].colour = Tile_empty::LightEmpty;
-            else Tile_Board[j][i].colour = Tile_empty::DarkEmpty;
+                Tile_Board[j][i].render_empty();
             Tile_Board[j][i].mark = rand() % NumOfTile + 1;
             Tile_Board[j][i].Tile_rect.x = 345 + i * 70;
             Tile_Board[j][i].Tile_rect.y = 90 + j * 70;
