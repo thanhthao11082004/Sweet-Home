@@ -7,6 +7,7 @@ using namespace std;
 char* IntTostr(long point);
 char* moveStr(int moves);
 
+
 enum class Button_Status {
 	Up,
 	Down

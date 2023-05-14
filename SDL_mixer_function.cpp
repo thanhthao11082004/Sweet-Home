@@ -21,7 +21,7 @@ bool LoadMusic()
 		cerr << "Error:" << Mix_GetError() << endl;
 		success = false;
 	}
-	background_music = Mix_LoadMUS("audio/backgroundMusic.wav");
+	background_music = Mix_LoadMUS("audio/SweetHome.mp3");
 	if (background_music == NULL)
 	{
 		cerr << "Failed to load background music! SDL_mixer Error: %s\n" << Mix_GetError();

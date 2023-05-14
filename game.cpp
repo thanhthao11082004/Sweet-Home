@@ -233,7 +233,7 @@ int Game::initialize_Game()
     Mix_VolumeChunk(eatable_sound, 32);
     Mix_VolumeChunk(selected_sound, 64);
     Mix_VolumeChunk(reverse_sound, 32);
-    Mix_VolumeMusic(16);
+    Mix_VolumeMusic(100);
 
     Show_image(renderer, BACKGROUND_IMG, back_rect);
     Show_image(renderer, PLAY, play_rect);
