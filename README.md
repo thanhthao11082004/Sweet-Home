@@ -3,7 +3,7 @@ Trần Thanh Thảo - 22021157
 
 
 I. Giới thiệu về Sweet Home:
-1. Game lấy ý tưởng từ game Candy Crush Saga
+1. Game lấy ý tưởng và đồ hoạ từ game Candy Crush Saga
 2. Code bằng ngôn ngữ C ++ và SDL2.0
 
 II. Hướng dẫn cách chơi game :
@@ -19,6 +19,12 @@ II. Hướng dẫn cách chơi game :
 Lưu ý : nếu không hiểu thì khi vào game có thể ấn nút setting ở góc bên dưới phía bên trái màn hình.
 + Chọn mục how to play có hướng dẫn cách chơi chi tiết.
 + muốn thoát ra thì chỉ cần ấn dấu X là được.
+
+![Demo](image/background.png)
+
+![Demo](image/settingss.png)
+
+![Demo](image/how_to_play1.jpg)
 
 III.Hướng dẫn cách tải và chơi game :
 1.  Cài git
