@@ -22,6 +22,10 @@ Lưu ý : nếu không hiểu thì khi vào game có thể ấn nút setting ở
 
 ![Demo](image/background.png)
 
+![Demo](image/settingss.png)
+
+![Demo](image/how_to_play1.jpg)
+
 III.Hướng dẫn cách tải và chơi game :
 1.  Cài git
 2. Clone repo về máy
