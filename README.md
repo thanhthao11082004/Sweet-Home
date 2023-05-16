@@ -20,6 +20,7 @@ Lưu ý : nếu không hiểu thì khi vào game có thể ấn nút setting ở
 + Chọn mục how to play có hướng dẫn cách chơi chi tiết.
 + muốn thoát ra thì chỉ cần ấn dấu X là được.
 
+![Demo](image/background.png)
 
 III.Hướng dẫn cách tải và chơi game :
 1.  Cài git
