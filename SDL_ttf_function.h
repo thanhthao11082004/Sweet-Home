@@ -6,6 +6,8 @@
 
 using namespace std;
 
-void LoadFont(const char* Text, SDL_Renderer* renderer, SDL_Rect Text_rect, const char* FontPath, int FontSize, SDL_Color TextColor, SDL_Color BackgroundColor);
-void CloseFont();
+void LoadFont(const char* Text, SDL_Renderer* renderer, SDL_Rect Text_rect);
+void CloseFont(TTF_Font* font);
+
+void ClearText(SDL_Renderer* renderer, SDL_Rect textRect);
 #endif // !SDL_TTF_FUNCTION_H

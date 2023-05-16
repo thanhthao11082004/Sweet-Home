@@ -1,8 +1,11 @@
 #ifndef NORMAL_H
 #define NORMAL_H
 #include "GameBoard.h"
+#include "Time.h"
+using namespace std; 
 
-using namespace std;
+
+
 
 char* IntTostr(long point);
 char* moveStr(int moves);
@@ -40,6 +43,7 @@ class Game {
 	Button game_button[5];
 	Button game_option[0];
 
+
 public:
 
 	Game(SDL_Renderer* _renderer, SDL_Event _e){
@@ -49,12 +53,11 @@ public:
 
 	int initialize_Game();
 	void selectLevel();
-	int Option();
-	int Setting();
 	int Gameplay();
 	int result(bool res);
-	int getOptionValue();
-	int getSettingValue();
+	int Menu();
+	int how_to_play();
+	int final();
 };
 
 #endif // !NORMAL_H

@@ -4,8 +4,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-const int Board_row = 6;
-const int Board_col = 6;
+const int Board_row = 8;
+const int Board_col = 9;
 
 enum class Tile_Status {
     Empty,
