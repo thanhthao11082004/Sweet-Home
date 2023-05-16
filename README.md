@@ -14,6 +14,8 @@ II. Hướng dẫn cách chơi game :
 + Đổi chỗ 2 nhân vật cạnh nhau để tạo tối thiểu 3 nhân vật liền kề theo hàng hoặc cột giống nhau.
 + Mỗi ô đã ăn được tính 100 điểm. 
 + Khi ăn được chuỗi >= 5 thì tất cả các nhân vật đó trên bàn đều được ăn.
+
+
 Lưu ý : nếu không hiểu thì khi vào game có thể ấn nút setting ở góc bên dưới phía bên trái màn hình.
 + Chọn mục how to play có hướng dẫn cách chơi chi tiết.
 + muốn thoát ra thì chỉ cần ấn dấu X là được.
